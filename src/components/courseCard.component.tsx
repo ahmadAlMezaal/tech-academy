@@ -1,6 +1,7 @@
 import Image from "next/image";
 import '@/app/ui/globals.css';
 import Link from "next/link";
+import { TCourse } from "@/types/models";
 
 type Props = {
     course: TCourse
@@ -13,12 +14,6 @@ export const CourseCard: React.FC<Props> = (props: Props) => {
     return <Link
         className="cursor-pointer max-w-xs rounded-md overflow-hidden shadow-lg"
         href={`/course/${course.id}`}
-    // href={{
-    //     pathname: `/course/${course.id}`,
-    //     query: `${course.id}`,
-    //     href: `/course/${course.id}`
-    // }}
-    // href={`/course/${course.id}`}
     >
         <div className="w-full h-auto">
             <div className="relative w-full" style={{ height: '150px' }}>

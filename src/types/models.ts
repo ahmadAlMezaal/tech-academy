@@ -1,11 +1,11 @@
-type TLearningOutcome = {
+export type TLearningOutcome = {
     title: string;
     description: string;
     duration: string;
     lessons: number;
 }
 
-type TCourse = {
+export type TCourse = {
     id: number;
     title: string;
     author: string;
@@ -24,16 +24,23 @@ type TCourse = {
     instructorId: number;
 };
 
-type TRating = {
+export type TRating = {
     star: number;
     percentage: number;
 }
 
-type TInstructor = {
+export type TInstructor = {
     id: number;
     name: string;
     image: string;
     rating: number;
     reviewCount: number;
     ratingsDistribution: TRating[];
+}
+
+export type CartContextType = {
+    cartItems: { [key: string]: TCourse[] };
+    addItemToCart: (_item: TCourse) => void;
+    removeItemFromCart: (_itemId: number) => void;
+    updateCartQuantity: (_quantity: number) => void;
 }
