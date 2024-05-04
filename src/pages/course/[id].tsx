@@ -3,8 +3,9 @@ import { useRouter } from 'next/router';
 import '@/app/ui/globals.css';
 import { useEffect, useState } from 'react';
 import { CourseContent, LearningGrid } from './components/learningGrid.component';
-import { availableInstructors, courses } from '@/app/db';
+import { availableInstructors, availableCourses } from '@/app/db';
 import { RatingRating } from './components/instructorRating.component';
+import { TCourse, TInstructor } from '@/types/models';
 
 const CourseSubscribeSection = ({ course }: { course: TCourse }) => {
     return (
@@ -40,7 +41,7 @@ const CourseDetailPage = () => {
     useEffect(
         () => {
             const init = () => {
-                const foundCourse = courses.find((course) => course.id === Number(id));
+                const foundCourse = availableCourses.find((course) => course.id === Number(id));
                 if (foundCourse) {
                     setCourse(foundCourse)
                 }
@@ -58,8 +59,15 @@ const CourseDetailPage = () => {
         return <div>Loading....</div>;
     }
 
+    const goBack = () => {
+        router.back();
+    };
+
     return (
         <div className="container mx-auto px-4 py-8">
+            <button onClick={goBack} className="mb-4 bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                Go Back
+            </button>
             <h1 className="text-4xl font-bold">{course.title}</h1>
             <div className="mt-4 mb-6">
                 <span className="text-lg">{course.rating} ★ ({course.ratingsCount} ratings) - {course.studentsCount} students</span>
@@ -89,10 +97,10 @@ const CourseDetailPage = () => {
                             className="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-r-md transition-colors duration-150 ease-in-out">
                             Apply
                         </button>
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-md transition-colors duration-150 ease-in-out">
+                            Add to cart - £{course.price}
+                        </button>
                     </div>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-md transition-colors duration-150 ease-in-out">
-                        Add to cart - £{course.price}
-                    </button>
                 </div>
             </div>
         </div>
