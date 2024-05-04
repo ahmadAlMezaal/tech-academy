@@ -1,6 +1,7 @@
 import { Layout } from "@/components/layout";
 import './ui/globals.css';
 import { CourseCard } from "@/components/courseCard.component";
+import Image from "next/image";
 
 const courses = [
     {
@@ -29,43 +30,53 @@ const courses = [
     }
 ];
 
-export default function Home() {
+const Home: React.FC = () => {
     const categories = ['All courses', 'Technology', 'Business', 'Design', 'Wellness'];
 
     return (
-        // <Layout>
-        //     <div className="container mx-auto px-4">
-        //         <h1 className="text-4xl font-bold text-center my-8">Course Catalog</h1>
-
-
-
-        //         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        // {
-        //     courses.map(
-        //         (item, index: number) => (
-        //             <CourseCard key={`${item.id}_${String(index)}`} course={item} />
-        //         )
-        //     )
-        // }
-        //         </div>
-        //     </div>
-        // </Layout>
         <Layout>
-            <div className="container mx-auto px-4 py-8">
-                <div className="flex justify-between items-center mb-6">
+            <div className="container mx-auto px-4 py-8 max-w-7xl">
+                {/* <div className="flex justify-between items-center mb-6">
                     <h1 className="text-4xl font-bold">Course Catalog</h1>
                     <div>
-                        {categories.map(category => (
+                        {
+                            categories.map(
+                                (category) => <button
+                                    key={category}
+                                    className="text-md text-gray-600 hover:text-gray-900 font-semibold mx-2">
+                                    {category}
+                                </button>
+                            )
+                        }
+                    </div>
+                </div> */}
+                <h1 className="text-2xl font-bold">Find a course</h1>
+                <p className="text-sm text-gray-600">3,000+ results</p>
+                <div className="flex gap-4 my-4 items-center">
+                    <div className="flex-grow flex border border-gray-300 rounded overflow-hidden">
+                        <span className="p-2">
+                            <Image width={20} height={20} src="/search.svg" alt="Search" className="w-6 h-6" />
+                        </span>
+                        <input
+                            type="text"
+                            placeholder="Search for courses"
+                            className="flex-grow p-2"
+                        />
+                    </div>
+                </div>
+                <div className="flex flex-col justify-between items-start mb-6">
+                    <div className="flex overflow-x-auto scrollbar-hide">
+                        {categories.map((category) => (
                             <button
                                 key={category}
-                                className="text-md text-gray-600 hover:text-gray-900 font-semibold mx-2"
+                                className="text-md bg-gray-800 hover:bg-gray-700 text-white font-semibold mx-2 py-2 px-4 rounded-full"
                             >
                                 {category}
                             </button>
                         ))}
                     </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mt-6">
                     {
                         courses.map(
                             (item, index: number) => (
@@ -87,3 +98,5 @@ export default function Home() {
         </Layout>
     );
 }
+
+export default Home;

@@ -10,36 +10,42 @@ export const NavBar = () => {
                         <Link href="/">
                             <Image src="/logo.jpeg" alt="Logo" width={50} height={50} />
                         </Link>
-                        <h1>Learning</h1>
+                        <div className="ml-6 flex items-center space-x-4">
+                            <Link href="/courses">
+                                Courses
+                            </Link>
+                            <Link href="/tracks">
+                                Tracks
+                            </Link>
+                            <Link href="/instructors">
+                                Instructors
+                            </Link>
+                            <Link href="/community">
+                                Community
+                            </Link>
+                        </div>
                     </div>
                 </div>
-                <div className="flex items-center">
-                    <div className="flex-shrink-0">
-                        <input
-                            type="search"
-                            placeholder="Search..."
-                            className="mr-2 p-2 border rounded-md"
+                <div className="flex items-center space-x-6">
+                    <Link href="/notifications">
+                        <Image
+                            src="/notification-icon.png"
+                            alt="Notifications"
+                            width={30}
+                            height={30}
+                            className="cursor-pointer"
                         />
-                    </div>
-                    <div className="ml-3 relative flex">
-                        <div className="relative">
-                            <Image
-                                src="/notification-icon.png"
-                                alt="Notifications"
-                                width={35}
-                                height={35}
-                                className="cursor-pointer"
-                            />
-                        </div>
-                        <div className="ml-4 flex-shrink-0 flex items-center">
+                    </Link>
+                    <div className="ml-4">
+                        <Link href="/profile">
                             <Image
                                 src="/profile.jpeg"
                                 alt="Profile"
-                                width={35}
-                                height={35}
-                                className="rounded-full"
+                                width={30}
+                                height={30}
+                                className="rounded-full cursor-pointer"
                             />
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>
