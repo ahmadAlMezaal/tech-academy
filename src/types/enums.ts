@@ -3,3 +3,7 @@ export enum CartActions {
     REMOVE_ITEM = 'REMOVE_ITEM',
     UPDATE_QUANTITY = 'UPDATE_QUANTITY',
 }
+
+export enum Storage {
+    CART = 'cart'
+}

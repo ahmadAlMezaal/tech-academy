@@ -1,5 +1,7 @@
+import { cartService } from '@/services/cart.service';
 import Image from 'next/image';
 import Link from 'next/link';
+import { CartIcon } from './cartIcon.component';
 
 export const NavBar = () => {
     return <nav className="bg-white shadow">
@@ -27,14 +29,8 @@ export const NavBar = () => {
                     </div>
                 </div>
                 <div className="flex items-center space-x-6">
-                    <Link href="/notifications">
-                        <Image
-                            src="/notification-icon.png"
-                            alt="Notifications"
-                            width={30}
-                            height={30}
-                            className="cursor-pointer"
-                        />
+                    <Link href="/cart">
+                        <CartIcon />
                     </Link>
                     <div className="ml-4">
                         <Link href="/profile">

@@ -6,6 +6,8 @@ import { CourseContent, LearningGrid } from './components/learningGrid.component
 import { availableInstructors, availableCourses } from '@/app/db';
 import { RatingRating } from './components/instructorRating.component';
 import { TCourse, TInstructor } from '@/types/models';
+import { cartService } from '@/services/cart.service';
+import { Layout } from '@/components/layout';
 
 const CourseSubscribeSection = ({ course }: { course: TCourse }) => {
     return (
@@ -35,6 +37,7 @@ const CourseDetailPage = () => {
     const [course, setCourse] = useState<TCourse | null>(null);
     const [instructor, setInstructor] = useState<TInstructor | null>(null);
     const [coupon, setCoupon] = useState('');
+    const [isInCart, setIsInCart] = useState(false);
 
     const handleCouponChange = (e: any) => setCoupon(e.target.value);
 
@@ -43,7 +46,9 @@ const CourseDetailPage = () => {
             const init = () => {
                 const foundCourse = availableCourses.find((course) => course.id === Number(id));
                 if (foundCourse) {
-                    setCourse(foundCourse)
+                    setCourse(foundCourse);
+                    const cart = cartService.getCart();
+                    setIsInCart(cart[foundCourse.id]);
                 }
                 const foundInstructor = availableInstructors.find((instructor) => instructor.id === Number(foundCourse?.instructorId));
                 if (foundInstructor) {
@@ -63,7 +68,17 @@ const CourseDetailPage = () => {
         router.back();
     };
 
-    return (
+    const handleAddCart = () => {
+        cartService.addToCart(course);
+        setIsInCart(true);
+    };
+
+    const handleRemoveCart = () => {
+        cartService.removeFromCart(course.id);
+        setIsInCart(false);
+    }
+
+    return <Layout>
         <div className="container mx-auto px-4 py-8">
             <button onClick={goBack} className="mb-4 bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                 Go Back
@@ -91,20 +106,25 @@ const CourseDetailPage = () => {
                             onChange={handleCouponChange}
                             placeholder="Enter Coupon"
                             className="flex-grow p-2 border border-gray-300 rounded-l-md focus:ring-2 focus:ring-blue-500"
-                            style={{ width: '300px' }} // Adjust based on layout requirements
+                            style={{ width: '300px' }}
                         />
                         <button
                             className="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-r-md transition-colors duration-150 ease-in-out">
                             Apply
                         </button>
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-md transition-colors duration-150 ease-in-out">
-                            Add to cart - £{course.price}
-                        </button>
+                        {
+                            isInCart ? <button onClick={handleRemoveCart} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-md transition-colors duration-150 ease-in-out">
+                                Remove from cart
+                            </button> :
+                                <button onClick={handleAddCart} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-10 rounded-md transition-colors duration-150 ease-in-out">
+                                    Add to cart - £{course.price}
+                                </button>
+                        }
                     </div>
                 </div>
             </div>
         </div>
-    );
+    </Layout>
 };
 
 export default CourseDetailPage;
