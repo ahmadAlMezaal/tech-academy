@@ -76,7 +76,36 @@ const CourseDetailPage = () => {
     const handleRemoveCart = () => {
         cartService.removeFromCart(course.id);
         setIsInCart(false);
-    }
+    };
+
+    const VideoSection = () => {
+        const videoUrls = [
+            "https://www.youtube.com/embed/HnXmI2UVZlU",
+            "https://www.youtube.com/embed/HnXmI2UVZlU",
+            "https://www.youtube.com/embed/9B5ZgItFxNA"
+        ];
+
+        return (
+            <div className="my-8">
+                <h2 className="text-3xl font-bold mb-4">Sample Videos</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {
+                        videoUrls.map(
+                            (url, index) => <div key={index} className="aspect-w-16 aspect-h-9">
+                                <iframe
+                                    src={url}
+                                    frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    className="w-full h-full"
+                                ></iframe>
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
+        );
+    };
 
     return <Layout>
         <div className="container mx-auto px-4 py-8">
@@ -91,6 +120,7 @@ const CourseDetailPage = () => {
             <div className="container mx-auto px-4 py-8">
                 <h1 className="text-4xl font-bold mb-6">What you'll learn</h1>
                 <LearningGrid items={course.learningOutcomes} />
+                <VideoSection />
                 <h2 className="text-3xl font-bold mt-8 mb-4">Course content</h2>
                 <CourseContent sections={course.sections} />
                 <div className='mt-12'>
