@@ -16,9 +16,45 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# Online Course Platform
+Welcome to our Online Course Platform, inspired by popular learning platforms like Coursera, Udemy, and Skillshare. This application is built using Next.js and provides a modern interface to browse, learn about, and enroll in various courses.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
+- Home Page: Displays a list of available courses with functionality to search through the courses based on keywords, helping users find their courses of interest quickly.
+- Course Details: Each course can be clicked on from the home page, which navigates to a detailed page about the course. This page includes: 
+ - Comprehensive details about the course, such as the course title, description, instructor details, and ratings.
+ - Embedded sample videos that provide a preview of the course content.
+ - Ability to add the course to a shopping cart.
+ - Cart Functionality: Users can add courses to their cart from the course details page. The cart can be viewed and modified by the user at any time.
+
+## Installation
+To get started with this project, clone the repository and install the dependencies.
+
+bash
+Copy code
+# Clone the repository
+git clone https://your-repository-url.git
+
+# Go into the repository
+cd online-course-platform
+
+# Install dependencies
+npm install
+
+# Run the application
+npm run dev
+Usage
+Once the application is running, navigate to http://localhost:3000 to view the home page. Here, you can:
+
+Browse the list of courses.
+Use the search bar to filter courses.
+Click on any course to view its details and watch sample videos.
+Add courses to your cart from the course details page.
+Navigation
+Back and Next Buttons: Available on the course detail pages to navigate back to the course list or proceed to the checkout page.
+Cart: Access your cart by clicking the cart icon at any time to see your selected courses.
+Contributing
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
 ## Learn More
 
